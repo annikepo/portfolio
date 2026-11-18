@@ -55,20 +55,25 @@ export default function Portfolio() {
       }
     }
   ];
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+return (
+    <div className="min-h-screen bg-sky-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-900">
       <header className="text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-sky-950 mb-4">
           My Developer Portfolio
         </h1>
-        <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-6">
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-6">
           A collection of projects showcasing reusable React components and Tailwind CSS styling. Click any card to view details!
         </p>
 
         {/* Preview Button Challenge */}
         <button
-          onClick={() => setShowProjects(!showProjects)}
+          onClick={() => {
+            setShowProjects((show) => {
+              if (show) setSelectedProject(null);
+              return !show;
+            });
+          }}
+          aria-expanded={showProjects}
           className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg shadow transition cursor-pointer"
         >
           {showProjects ? 'Hide Projects' : 'Preview Projects'}
