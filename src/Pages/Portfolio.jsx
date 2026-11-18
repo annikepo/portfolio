@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import ProjectCard from './ProjectCard';
+import ProjectCard from '../components/ProjectCard';
+import Popup from './Popup';
 
 // Import all 3 local screenshots from src/assets/
 import petShopImg from '../assets/petshop.jpg';
@@ -9,6 +10,9 @@ import weatherImg from '../assets/Weather.jpg';
 export default function Portfolio() {
   // Challenge requirement: Use useState, default to blank (false)
   const [showProjects, setShowProjects] = useState(false);
+
+  // State to track the currently clicked project for your Lesson 3 Popup assignment
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const projectsData = [
     {
@@ -59,7 +63,7 @@ export default function Portfolio() {
           My Developer Portfolio
         </h1>
         <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-6">
-          A collection of projects showcasing reusable React components and Tailwind CSS styling.
+          A collection of projects showcasing reusable React components and Tailwind CSS styling. Click any card to view details!
         </p>
 
         {/* Preview Button Challenge */}
@@ -75,17 +79,28 @@ export default function Portfolio() {
       {showProjects && (
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project) => (
-            <ProjectCard
-              key={project.id}
-              name={project.name}
-              screenshot={project.screenshot}
-              githubRepo={project.githubRepo}
-              techUsed={project.techUsed}
-              writeUp={project.writeUp}
-            />
+            <div 
+              key={project.id} 
+              onClick={() => setSelectedProject(project)}
+              className="cursor-pointer transition transform hover:-translate-y-1"
+            >
+              <ProjectCard
+                name={project.name}
+                screenshot={project.screenshot}
+                githubRepo={project.githubRepo}
+                techUsed={project.techUsed}
+                writeUp={project.writeUp}
+              />
+            </div>
           ))}
         </main>
       )}
+
+      {/* Popup Window Component for Lesson 3 Assignment */}
+      <Popup 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </div>
   );
 }
