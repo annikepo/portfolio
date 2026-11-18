@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 export default function Objects() {
   const [user, setUser] = useState({
-    username: 'Anni',
-    title: 'Frontend Developer',
+    username: 'CodeNinja',
+    title: 'Fullstack Developer',
     status: 'Active'
   });
 

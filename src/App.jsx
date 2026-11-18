@@ -7,7 +7,7 @@ import Portfolio from './Pages/Portfolio';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-sky-50 text-slate-800">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
